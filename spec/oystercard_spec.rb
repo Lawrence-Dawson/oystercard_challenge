@@ -24,6 +24,8 @@ describe Oystercard do
     expect(subject).not_to be_in_journey
   end
 
-
+  it "changes it's in_journey? status on touching in" do
+    expect(subject.touch_in).to be_in_journey
+  end
 
 end
