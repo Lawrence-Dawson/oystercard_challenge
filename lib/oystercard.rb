@@ -1,4 +1,4 @@
-class Card
+class Oystercard
 
 attr_reader :balance
 
@@ -13,7 +13,7 @@ attr_reader :balance
   end
 
   def deduct(value)
-    @balance -= value    
+    @balance -= value
   end
 
 end
