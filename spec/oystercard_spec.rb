@@ -17,15 +17,15 @@ describe Oystercard do
     expect{ subject.top_up(max_balance + 1) }.to raise_error(RuntimeError, /Balance/)
   end
 
-  it "deduct money from card balance" do
-    subject.top_up(10)
-    expect{ subject.deduct(10) }.to change{subject.balance}.by(-10)
-  end
-
   it "is card in transit?" do
     expect(subject).not_to be_in_journey
   end
-describe "Topped up card" do
+
+  it "deosn't allow to enter with insufficient funds" do
+    expect{subject.touch_in}.to raise_error(RuntimeError, /Insufficient/)
+  end
+
+describe "Tests on topped up card" do
 
   subject(:t_card) {described_class.new(Oystercard::MIN_FARE)}
 
@@ -40,13 +40,14 @@ describe "Topped up card" do
     expect(t_card).not_to be_in_journey
   end
 
-  it "deosn't allow to enter with insufficient funds" do
-    t_card.deduct(1)
-    expect{t_card.touch_in}.to raise_error(RuntimeError, /Insufficient/)
-  end
-
   it "deducts money from the card upon touch out" do
     expect{t_card.touch_out}.to change{t_card.balance}.by(-1)
+  end
+
+  it "remembers entry station" do
+    a_station = double(:a_station)
+    t_card.touch_in(a_station)
+    expect{t_card.entry_station}.to include(a_station)
   end
 
 end

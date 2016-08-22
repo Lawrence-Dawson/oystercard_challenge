@@ -15,10 +15,6 @@ MAX_CARD_LIMIT = 90
     @balance += value
   end
 
-  def deduct(value)
-    @balance -= value
-  end
-
   def in_journey?
     in_journey
   end
@@ -31,7 +27,13 @@ MAX_CARD_LIMIT = 90
 
   def touch_out
     @in_journey = false
+    deduct(MIN_FARE)
   end
 
+private
+
+  def deduct(value)
+    @balance -= value
+  end
 
 end
