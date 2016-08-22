@@ -45,5 +45,9 @@ describe "Topped up card" do
     expect{t_card.touch_in}.to raise_error(RuntimeError, /Insufficient/)
   end
 
+  it "deducts money from the card upon touch out" do
+    expect{t_card.touch_out}.to change{t_card.balance}.by(-1)
+  end
+
 end
 end
