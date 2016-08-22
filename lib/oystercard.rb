@@ -7,7 +7,7 @@ attr_reader :balance
   end
 
   #consider using attr_accessor for the balance below so we don't call @balance directly.
-  def add(value)
+  def top_up(value)
     fail "Max top up value exceeded" if value >= 100
     @balance += value
   end
