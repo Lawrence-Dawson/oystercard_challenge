@@ -13,11 +13,12 @@ I want to add money to my card
 In order to protect my money
 As a customer
 I don't want to put too much money on my card
-*
+*TESTED*
 
 In order to pay for my journey
 As a customer
 I need my fare deducted from my card
+*TESTED*
 
 In order to get through the barriers
 As a customer
