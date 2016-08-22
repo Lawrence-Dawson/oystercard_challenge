@@ -55,5 +55,11 @@ describe "Tests on topped up card" do
     expect(t_card.entry_station).to eq nil
   end
 
+  it "stores an exit station for a journey" do
+    t_card.touch_in(a_station)
+    t_card.touch_out(a_station)
+    expect(t_card.entry_station[-1]).to include(:in => a_station, :out => a_station)
+  end
+
 end
 end

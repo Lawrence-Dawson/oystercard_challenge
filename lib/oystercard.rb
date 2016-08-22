@@ -1,12 +1,11 @@
 class Oystercard
 
-attr_reader :balance, :in_journey, :entry_station
+attr_reader :balance, :entry_station
 MIN_FARE = 1
 MAX_CARD_LIMIT = 90
 
   def initialize(balance=0)
     @balance = balance
-    @in_journey = false
     @entry_station
   end
 
@@ -17,7 +16,7 @@ MAX_CARD_LIMIT = 90
   end
 
   def in_journey?
-    in_journey
+    !!@entry_station
   end
 
   def touch_in(entry_station)
@@ -30,6 +29,7 @@ MAX_CARD_LIMIT = 90
   def touch_out
     @in_journey = false
     deduct(MIN_FARE)
+    @entry_station = nil
   end
 
 private
