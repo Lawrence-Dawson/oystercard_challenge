@@ -2,6 +2,8 @@ require 'oystercard'
 
 describe Oystercard do
 
+subject(:card) {described_class.new}
+
   it "allows to store money" do
     expect(subject.balance).to eq(0)
   end
@@ -25,7 +27,14 @@ describe Oystercard do
   end
 
   it "changes it's in_journey? status on touching in" do
-    expect(subject.touch_in).to be_in_journey
+    card.touch_in
+    expect(card).to be_in_journey
+  end
+
+  it "changes it's in_journey? status on touching out" do
+    card.touch_in
+    card.touch_out
+    expect(card).not_to be_in_journey
   end
 
 end
