@@ -27,4 +27,10 @@ MAX_CARD_LIMIT = 90
     @in_journey = true
     #self
   end
+
+  def touch_out
+    @in_journey = false
+  end
+
+  
 end
