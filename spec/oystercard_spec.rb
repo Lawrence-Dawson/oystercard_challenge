@@ -20,6 +20,10 @@ describe Oystercard do
     expect{ subject.deduct(10) }.to change{subject.balance}.by(-10)
   end
 
+  it "is card in transit?" do
+    expect(subject).not_to be_in_journey
+  end
+
 
 
 end
