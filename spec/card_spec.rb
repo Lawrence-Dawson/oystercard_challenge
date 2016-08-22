@@ -7,11 +7,16 @@ describe Card do
   end
 
   it "adds money to card" do
-    expect{ subject.add_funds(10) }.to change{subject.balance}.from(0).to(10)
+    expect{subject.add(10)}.to change{subject.balance}.from(0).to(10)
   end
 
   it "limits value that can be put on a card" do
-    expect{subject.add_funds(100)}.to raise_error("Max top up value exceeded")
+    expect{ subject.add(100) }.to raise_error("Max top up value exceeded")
+  end
+  
+  it "deduct money from card balance" do
+    subject.add(10)
+    expect{ subject.deduct(10) }.to change{subject.balance}.from(10).to(0)
   end
 
 end
