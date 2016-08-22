@@ -11,7 +11,8 @@ describe Oystercard do
   end
 
   it "limits value that can be put on a card" do
-    expect{ subject.top_up(100) }.to raise_error("Max top up value exceeded")
+    max_balance = Oystercard::MAX_CARD_LIMIT
+    expect{ subject.top_up(max_balance + 1) }.to raise_error(RuntimeError, /Balance/)
   end
 
   it "deduct money from card balance" do
