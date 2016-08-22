@@ -49,5 +49,11 @@ describe "Tests on topped up card" do
     expect(t_card.entry_station).to eq a_station
   end
 
+  it "entry station gets set to nill upon touch out" do
+    t_card.touch_in(a_station)
+    t_card.touch_out
+    expect(t_card.entry_station).to eq nil
+  end
+
 end
 end
