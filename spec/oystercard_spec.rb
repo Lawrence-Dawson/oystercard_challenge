@@ -2,6 +2,8 @@ require 'oystercard'
 
 describe Oystercard do
 
+  #subject(:subject) {described_class.new}
+
   it "allows to store money" do
     expect(subject.balance).to eq(0)
   end
@@ -23,23 +25,25 @@ describe Oystercard do
   it "is card in transit?" do
     expect(subject).not_to be_in_journey
   end
+describe "Topped up card" do
+
+  subject(:t_card) {described_class.new(Oystercard::MIN_FARE)}
 
   it "changes it's in_journey? status on touching in" do
-    subject.touch_in
-    expect(subject).to be_in_journey
+    t_card.touch_in
+    expect(t_card).to be_in_journey
   end
 
   it "changes it's in_journey? status on touching out" do
-    subject.touch_in
-    subject.touch_out
-    expect(subject).not_to be_in_journey
+    t_card.touch_in
+    t_card.touch_out
+    expect(t_card).not_to be_in_journey
   end
 
   it "deosn't allow to enter with insufficient funds" do
-    subject.top_up(Oystercard::MIN_FARE)
-    subject.touch_in
-    subject.touch_out
-    expect{subject.touch_in}.to raise_error(RuntimeError, /Insufficient/)
+    t_card.deduct(1)
+    expect{t_card.touch_in}.to raise_error(RuntimeError, /Insufficient/)
   end
 
+end
 end
