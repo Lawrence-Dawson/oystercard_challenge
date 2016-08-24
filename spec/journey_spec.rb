@@ -15,6 +15,10 @@ describe '#finish ' do
     expect(subject.finish(station)).to eq station
   end
 
+end
+
+describe '#fare' do
+
   it 'calculates the fare' do
     subject.finish(station)
     expect(subject.fare).to eq Journey::MIN_FARE
@@ -29,8 +33,11 @@ describe '#finish ' do
     expect(subject.fare).to eq Journey::PENALTY_FARE
   end
 
+end
 
+describe '#journey history' do
 
-  end
+  it ''
+end
 
-  end
+end

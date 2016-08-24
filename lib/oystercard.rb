@@ -15,9 +15,6 @@ class Oystercard
     @journeys[:entry] = station
   end
 
-  def in_journey?
-    !!entry_station
-  end
 
   def touch_out(station)
     deduct(MIN_FARE)
