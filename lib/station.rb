@@ -4,10 +4,23 @@ require 'CSV'
 class Station
   attr_reader :name, :zone
 
-  def initialize(name: name)
-    @name = name
-    @zone = zone
+  def initialize(station_name)
+    @name = station_name
+    load_stations_ref
+    @zone = @stations_ref[@name]
   end
 
 
+  private
+
+  def load_stations_ref
+    @stations_ref = {}
+    Dir.chdir(File.dirname(__FILE__)) #IDK WHAT THIS DOES? but it fixes shit. SO KEEP IT!
+
+    CSV.foreach("London_stations.csv") do |row|
+      @stations_ref[row[3]] = row[5].to_i
+    end
+
+    1
+  end
 end
