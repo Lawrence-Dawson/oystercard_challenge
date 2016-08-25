@@ -2,7 +2,7 @@ require 'station'
 
 describe Station do
 
-  subject(:station) {described_class.new("Bank")}
+  subject {described_class.new("Bank", 1)}
 
   it 'returns station name' do
     expect(subject.name).to eq("Bank")
@@ -11,4 +11,5 @@ describe Station do
   it 'returns zone' do
     expect(subject.zone).to eq(1)
   end
+
 end
