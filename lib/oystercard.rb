@@ -12,9 +12,9 @@ class Oystercard
     @journey_history = JourneyHistory.new
   end
 
-  def touch_in(station)
+  def touch_in(station_name)
     fail 'you have insufficient funds on your oystercard' if balance < MIN_FARE
-
+    station = Station.new(station_name)
     if @current_journey != nil #if the user has already touched in without touching out
       @current_journey.set_end_station(nil) #this line is optional for now as it is by default already nil
       @journey_history.record_journey(@current_journey)
@@ -41,7 +41,7 @@ class Oystercard
     @balance += value
   end
 
-private
+  private
   def deduct(fare)
     @balance -= fare
   end

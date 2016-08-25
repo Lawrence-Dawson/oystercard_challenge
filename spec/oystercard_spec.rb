@@ -16,17 +16,17 @@ describe Oystercard do
   end
 
   let(:journey){ {entry: entry_station, exit: exit_station}}
+  
+  describe '#top_up' do
 
-    describe '#top_up' do
-
-      before do
-        subject.top_up(Oystercard::BALANCE_LIMIT)
-      end
-
-      it 'will not allow a balance to exceed 90' do
-        expect{ subject.top_up 1 }.to raise_error "Your top up will exceed balance limit of #{Oystercard::BALANCE_LIMIT}!"
-      end
+    before do
+      subject.top_up(Oystercard::BALANCE_LIMIT)
     end
+
+    it 'will not allow a balance to exceed 90' do
+      expect{ subject.top_up 1 }.to raise_error "Your top up will exceed balance limit of #{Oystercard::BALANCE_LIMIT}!"
+    end
+  end
 
   describe '#touch_in' do
 

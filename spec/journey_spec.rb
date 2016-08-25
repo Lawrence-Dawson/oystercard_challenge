@@ -36,9 +36,5 @@ describe '#fare' do
 
 end
 
-describe '#journey history' do
-
-  it ''
-end
 
 end
