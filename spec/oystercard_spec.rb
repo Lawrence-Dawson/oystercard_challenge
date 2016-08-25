@@ -1,5 +1,6 @@
 
 require 'oystercard.rb'
+require 'journey.rb' #required to fetch the penalty_fare and regular fare only
 
 describe Oystercard do
   let(:entry_station) {double :station}
@@ -42,6 +43,11 @@ describe Oystercard do
 
     it 'raises an error if minimum balance on oystercard is less than 1' do
       expect{subject.touch_in(station)}.to raise_error 'you have insufficient funds on your oystercard'
+    end
+
+    it 'charges the user a penalty fare if (s)he touches in without having touched out of last journey' do
+      subject.touch_in #touch in without touching out
+      expect{subject.touch_in}.to change{subject.balance} by(Journey::PENALTY_FARE)
     end
   end
 

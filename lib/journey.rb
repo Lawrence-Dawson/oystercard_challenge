@@ -7,6 +7,7 @@ class Journey
 
   def initialize(station:)
     @entry_station = station
+    @fare = nil
   end
 
   def complete?
@@ -18,9 +19,7 @@ class Journey
   end
 
   def fare
-    complete? ? MIN_FARE : PENALTY_FARE
+    complete? ? @fare = MIN_FARE : @fare = PENALTY_FARE
+    @fare
   end
-
-
-
 end
