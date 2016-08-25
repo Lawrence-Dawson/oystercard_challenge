@@ -11,22 +11,11 @@ describe Oystercard do
     expect(subject.balance).to eq 0
   end
 
-  it 'checks that the card has an empty list of journeys' do
-    expect(subject.journeys).to be_empty
-  end
-
   it 'adds money to my oyster card' do
     expect{ subject.top_up 1 }.to change{ subject.balance }.by 1
   end
 
   let(:journey){ {entry: entry_station, exit: exit_station}}
-
-  it 'checks that touching in and out creates one journey' do
-    subject.top_up(20)
-    subject.touch_in(entry_station)
-    subject.touch_out(exit_station)
-    expect(subject.journeys).to include journey
-  end
 
     describe '#top_up' do
 

@@ -6,7 +6,8 @@ describe Journey do
 
 
   it 'has an entry station' do
-    expect(subject.entry_station).to eq station
+    journey = Journey.new(station)
+    expect(journey.entry_station).to eq station
   end
 
 describe '#finish ' do
