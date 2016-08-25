@@ -16,17 +16,16 @@ class Journey
     !!@entry_station && !!@exit_station
   end
 
-  def finish(station)
-    @exit_station = station
-  end
-
   def set_end_station(station, zone = nil)
     @exit_station = station
     @exit_zone = zone
   end
 
   def fare
-    complete? ? @fare = MIN_FARE : @fare = PENALTY_FARE
-    @fare
+    if complete? == true
+      @fare = (@entry_zone - @exit_zone).abs + MIN_FARE
+    else
+      @fare = PENALTY_FARE
+    end
   end
 end
