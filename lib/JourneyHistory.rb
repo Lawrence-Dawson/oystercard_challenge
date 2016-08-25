@@ -4,8 +4,7 @@ class JourneyHistory
     @journey_history = []
   end
 
-  def add_journey(journey)
+  def record_journey(journey)
     @journey_history << journey
   end
-
 end
