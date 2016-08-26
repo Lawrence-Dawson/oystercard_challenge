@@ -29,7 +29,7 @@ class Oystercard
 
   def touch_out(station, zone)
     if @current_journey == nil
-      @current_journey = Journey.new(nil)
+       @current_journey = Journey.new(nil)
     end
 
     @current_journey.set_end_station(station, zone)
