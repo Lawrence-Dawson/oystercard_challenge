@@ -31,7 +31,6 @@ class Oystercard
     if @current_journey == nil
        @current_journey = Journey.new(nil)
     end
-
     @current_journey.set_end_station(station, zone)
     deduct(@current_journey.fare)
     @journey_history.record_journey(@current_journey)
